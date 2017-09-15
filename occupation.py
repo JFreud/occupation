@@ -16,10 +16,9 @@ def make_dict(file):
 def pick_random(occD, total):
     chosen = random.uniform(0, total)
     for key in occD:
-        if chosen <= 0:
+        chosen -= occD[key]
+        if chosen <= 0.1:
             return key + ", " + str(occD[key])
-        else:
-            chosen -= occD[key]
     return "That's not right"
 
 
@@ -28,7 +27,7 @@ occs = make_dict("occupations.csv")
 print pick_random(occs, 99.8)
 
 testerD = {}
-top = 10000000.0
+top = 100000.0
 
 for i in range (1, int(top)):
     this = pick_random(occs, 99.8)
